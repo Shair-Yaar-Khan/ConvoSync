@@ -4,6 +4,7 @@ import path from 'path'
 
 import authRoutes from './routes/auth.route.js'
 import messageRoutes from './routes/message.routes.js'
+import { connectDB } from './lib/db.js'
 
 dotenv.config()
 
@@ -21,7 +22,7 @@ app.use('/api/message',messageRoutes)
 
 //make ready for deployment
 if(process.env.NODE_ENV === "production"){
-    console.log(process.env.NODE_ENV)
+
     app.use(express.static(path.join(__dirname,"../frontend/vite-project/dist")))
 
     app.get(/.*/,(req,res)=>{
@@ -29,4 +30,8 @@ if(process.env.NODE_ENV === "production"){
     })
 }
 
-app.listen(PORT,()=> {console.log("Serever running on PORT "+PORT)})
+app.listen(PORT,()=> {
+    
+    console.log("Serever running on PORT "+PORT)
+    connectDB()
+})
