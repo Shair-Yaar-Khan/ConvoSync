@@ -45,6 +45,8 @@ export const signUp =async (req,res)=>{
             profilePic:newUser.profilePic
           })
 
+        // 
+
         }else {
             res.status(400).json({message:"Invalid user data"})
         }
