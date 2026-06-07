@@ -15,6 +15,7 @@ console.log(__dirname)
 
 const PORT = process.env.PORT || 3000
 
+app.use(express.json()) //req.body
 
 app.use('/api/auth',authRoutes)
 app.use('/api/message',messageRoutes)
@@ -30,8 +31,8 @@ if(process.env.NODE_ENV === "production"){
     })
 }
 
-app.listen(PORT,()=> {
+app.listen(PORT,async ()=> {
     
     console.log("Serever running on PORT "+PORT)
-    connectDB()
+    await connectDB()
 })
